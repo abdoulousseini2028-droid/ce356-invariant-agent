@@ -1,0 +1,12 @@
+[
+  {
+    "description": "Two-process mutual exclusion: each process alternates between idle and critical. Only one process should be in the critical section at a time.",
+    "spec": "\n---- MODULE MutualExclusion ----\nEXTENDS Naturals\n\nVARIABLES pc1, pc2, lock\n\nInit == /\\ pc1 = \"idle\" /\\ pc2 = \"idle\" /\\ lock = \"free\"\n\nTry1 == pc1 = \"idle\" /\\ lock = \"free\" /\\ pc1' = \"critical\" /\\ lock' = \"locked\" /\\ UNCHANGED pc2\nTry2 == pc2 = \"idle\" /\\ lock = \"free\" /\\ pc2' = \"critical\" /\\ lock' = \"locked\" /\\ UNCHANGED pc1\n\nExit1 == pc1 = \"critical\" /\\ pc1' = \"idle\" /\\ lock' = \"free\" /\\ UNCHANGED pc2\nExit2 == pc2 = \"critical\" /\\ pc2' = \"idle\" /\\ lock' = \"free\" /\\ UNCHANGED pc1\n\nNext == Try1 \\/ Try2 \\/ Exit1 \\/ Exit2\n\nSpec == Init /\\ [][Next]_<<pc1, pc2, lock>>\n====\n",
+    "invariant": "~(pc1 = \"critical\" /\\ pc2 = \"critical\")"
+  },
+  {
+    "description": "Two-process mutual exclusion: each process alternates between idle and critical. Only one process should be in the critical section at a time.",
+    "spec": "\n---- MODULE MutualExclusion ----\nEXTENDS Naturals\n\nVARIABLES pc1, pc2, lock\n\nInit == /\\ pc1 = \"idle\" /\\ pc2 = \"idle\" /\\ lock = \"free\"\n\nTry1 == pc1 = \"idle\" /\\ lock = \"free\" /\\ pc1' = \"critical\" /\\ lock' = \"locked\" /\\ UNCHANGED pc2\nTry2 == pc2 = \"idle\" /\\ lock = \"free\" /\\ pc2' = \"critical\" /\\ lock' = \"locked\" /\\ UNCHANGED pc1\n\nExit1 == pc1 = \"critical\" /\\ pc1' = \"idle\" /\\ lock' = \"free\" /\\ UNCHANGED pc2\nExit2 == pc2 = \"critical\" /\\ pc2' = \"idle\" /\\ lock' = \"free\" /\\ UNCHANGED pc1\n\nNext == Try1 \\/ Try2 \\/ Exit1 \\/ Exit2\n\nSpec == Init /\\ [][Next]_<<pc1, pc2, lock>>\n====\n",
+    "invariant": "~(pc1 = \"critical\" /\\ pc2 = \"critical\")"
+  }
+]

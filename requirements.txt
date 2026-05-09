@@ -1,0 +1,5 @@
+google-genai>=0.3
+anthropic>=0.25
+numpy>=1.26
+sentence-transformers>=2.7
+pytest>=8.0
