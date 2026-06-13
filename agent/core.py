@@ -48,7 +48,8 @@ class InvariantAgent:
                 }
 
             # Verification failed — format feedback and retry
-            feedback_msg = self.policy.format_feedback(result["counterexample"])
+            ce = result["counterexample"] or {"trace": [], "property": "the invariant"}
+            feedback_msg = self.policy.format_feedback(ce)
             feedback_history.append({"iteration": iteration, "message": feedback_msg, "previous_attempt": candidate_invariant})
 
         reward = self._compute_reward(success=False, iteration=MAX_ITERS)
